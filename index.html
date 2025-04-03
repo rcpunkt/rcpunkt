@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="RCPunkt - innowacyjny czytnik RCP kart rejestracji czasu pracy. Zautomatyzuj zarządzanie obecnością pracowników, zwiększ produktywność i uprość procesy kadrowe za pomocą naszego zaawansowanego systemu.">
+    <title>RCPunkt - Czytnik RCP Kart Rejestracji Czasu Pracy - Innowacyjne Rozwiązanie</title>
+    <script>
+        'use strict';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Pobieramy wszystkie elementy <a> z klasą "email-link"
+            const emailLinks = document.querySelectorAll('.email-link');
+
+            // Iterujemy przez wszystkie znalezione linki
+            emailLinks.forEach(function (a) {
+                // Modyfikujemy atrybut href każdego z linków
+                a.setAttribute('href', a.getAttribute('href')
+                    .replace('-', 'ontakt@')
+                    .replaceAll('-', '.')
+                    .replace('/', '4all.pl')
+                    .replace('to', 'mailto:k')
+                );
+
+                // Pobieramy zmodyfikowany adres e-mail
+                const email = a.getAttribute('href');
+
+                // Wyświetlamy adres e-mail jako tekst w linku
+                a.textContent = email.replace('mailto:', '');
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+
+            mobileMenuBtn.addEventListener('click', function () {
+                navLinks.classList.toggle('active');
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            const menuItems = document.querySelectorAll('.nav-links a');
+
+            // Otwieranie/zamykanie menu
+            //mobileMenuBtn.addEventListener('click', function () {
+            //    navLinks.classList.toggle('active');
+            //});
+
+            // Zamykanie menu po kliknięciu w link
+            menuItems.forEach(function (menuItem) {
+                menuItem.addEventListener('click', function () {
+                    navLinks.classList.remove('active');
+
+                    // Dodanie płynnego przewijania z offsetem dla fixed header
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        // Opóźnienie, aby menu zdążyło się zamknąć
+                        setTimeout(function () {
+                            const headerHeight = document.querySelector('header').offsetHeight;
+                            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                            window.scrollTo({
+                                top: targetPosition - headerHeight,
+                                behavior: 'smooth'
+                            });
+                        }, 100);
+
+                        // Zapobieganie domyślnej akcji przeglądarki
+                        event.preventDefault();
+                    }
+                });
+            });
+        });
+    </script>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --light-gray: #f3f4f6;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+            .nav-links li {
+                margin-left: 30px;
+            }
+
+            .nav-links a {
+                text-decoration: none;
+                color: var(--text-color);
+                font-weight: 500;
+                transition: color 0.3s;
+            }
+
+                .nav-links a:hover {
+                    color: var(--primary-color);
+                }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+            .btn:hover {
+                background-color: var(--secondary-color);
+            }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 100px;
+            background: linear-gradient(135deg, #f6f9fe 0%, #dae7fe 100%);
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+            .hero-image img {
+                max-width: 100%;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #4b5563;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 50px 0;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 36px;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        .section-title p {
+            font-size: 18px;
+            color: #6b7280;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .hero-text p {
+                font-size: 16px;
+            }
+
+            .feature-card h3 {
+                font-size: 20px;
+            }
+
+            .step-content h3 {
+                font-size: 20px;
+            }
+
+            .contact-link {
+                font-size: 18px;
+            }
+        }
+
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+        .feature-card {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+            .feature-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            }
+
+        .feature-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 50px 0;
+            background-color: var(--light-gray);
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .step-number {
+            background-color: var(--primary-color);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .steps {
+                gap: 20px;
+            }
+
+            .step {
+                padding: 20px;
+            }
+
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 50px 0;
+            background-color: var(--white);
+        }
+
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .pricing-card {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 40px;
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+            display: flex;
+            flex-direction: column;
+        }
+
+            .pricing-card.popular {
+                background-color: var(--primary-color);
+                color: var(--white);
+                transform: scale(1.05);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+                position: relative;
+            }
+
+        .popular-tag {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background-color: #f59e0b;
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .pricing-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .pricing-card.popular h3 {
+            color: var(--white);
+        }
+
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+            .price span {
+                font-size: 18px;
+                font-weight: 400;
+            }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+            .pricing-features li {
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+            }
+
+                .pricing-features li::before {
+                    content: "✓";
+                    color: var(--primary-color);
+                    margin-right: 10px;
+                    font-weight: bold;
+                }
+
+        .pricing-card.popular .pricing-features li::before {
+            color: var(--white);
+        }
+
+        .pricing-card .btn {
+            background-color: var(--primary-color);
+            text-align: center;
+        }
+
+        .pricing-card.popular .btn {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+            .pricing-card.popular .btn:hover {
+                background-color: var(--light-gray);
+            }
+
+        @media (max-width: 768px) {
+            .pricing-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pricing-card {
+                width: 100%;
+                max-width: 350px;
+                margin-bottom: 20px;
+            }
+
+                .pricing-card.popular {
+                    transform: scale(1);
+                    order: -1;
+                }
+        }
+        /* Product Details */
+        .product-details {
+            padding: 50px 0;
+            background-color: var(--white);
+        }
+
+        /* Zmień minimalną szerokość w product-grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        /* Dodaj style dla lepszego wyświetlania spec-list na urządzeniach mobilnych */
+        @media (max-width: 1024px) {
+            .spec-list li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .spec-name {
+                margin-bottom: 5px;
+            }
+
+            .spec-value {
+                font-size: 14px;
+            }
+        }
+
+        
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .product-image {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+            .product-image img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+        .product-specs {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .spec-group {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 25px;
+        }
+
+            .spec-group h3 {
+                font-size: 22px;
+                margin-bottom: 15px;
+                color: var(--primary-color);
+                display: flex;
+                align-items: center;
+            }
+
+                .spec-group h3 i {
+                    margin-right: 10px;
+                }
+
+        .spec-list {
+            list-style: none;
+        }
+
+            .spec-list li {
+                padding: 8px 0;
+                border-bottom: 1px solid #e5e7eb;
+                display: flex;
+                justify-content: space-between;
+            }
+
+                .spec-list li:last-child {
+                    border-bottom: none;
+                }
+
+        .spec-name {
+            font-weight: 600;
+        }
+
+        .spec-value {
+            color: #4b5563;
+        }
+
+        .product-description {
+            line-height: 1.8;
+        }
+
+            .product-description p {
+                margin-bottom: 20px;
+            }
+
+        .highlight-box {
+            background-color: #dbeafe;
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+            .highlight-box h3 {
+                font-size: 20px;
+                margin-bottom: 10px;
+                color: var(--primary-color);
+            }
+
+        .model-variants {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .model-card {
+            flex: 1;
+            min-width: 250px;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+            .model-card:hover {
+                border-color: var(--primary-color);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .model-card h4 {
+                font-size: 18px;
+                margin-bottom: 10px;
+                color: var(--text-color);
+            }
+
+            .model-card ul {
+                list-style: none;
+                margin-bottom: 15px;
+            }
+
+                .model-card ul li {
+                    padding: 5px 0;
+                    font-size: 14px;
+                    color: #4b5563;
+                }
+
+                    .model-card ul li:before {
+                        content: "✓";
+                        color: var(--primary-color);
+                        margin-right: 8px;
+                    }
+
+
+        /* Contact */
+        .contact {
+            padding: 50px 0 200px;
+        }
+        .contact-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-wrapper {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .contact-card {
+            background-color: var(--light-gray);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            width: 400px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+            .contact-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            }
+
+        .contact-icon-large {
+            font-size: 64px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .contact-link {
+            display: block;
+            font-size: 24px;
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-bottom: 15px;
+            transition: color 0.3s;
+        }
+
+            .contact-link:hover {
+                color: var(--secondary-color);
+            }
+
+        .contact-description {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .contact-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-card {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .step {
+                flex-direction: column;
+            }
+
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+
+                .nav-links li {
+                    margin-left: 0;
+                }
+        }
+
+        .floating-contact-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1100;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s ease;
+        }
+
+            .floating-contact-bar:hover {
+                transform: scale(1.05);
+            }
+
+        .floating-contact-bar-icon {
+            font-size: 24px;
+        }
+
+        .floating-contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+            .floating-contact-info a {
+                color: var(--white);
+                text-decoration: none;
+                font-weight: 500;
+                transition: opacity 0.3s;
+            }
+
+                .floating-contact-info a:hover {
+                    opacity: 0.8;
+                }
+
+            .floating-contact-info .contact-type {
+                font-size: 14px;
+                opacity: 0.8;
+                margin-bottom: 5px;
+            }
+        @media (max-width: 480px) {
+            .floating-contact-bar {
+                padding: 10px;
+                right: 5px;
+                bottom: 5px;
+            }
+
+            .floating-contact-info a {
+                font-size: 14px;
+            }
+
+            .floating-contact-info .contact-type {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .floating-contact-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                right: 10px;
+                bottom: 10px;
+                padding: 15px;
+                gap: 5px;
+            }
+
+            .floating-contact-bar-icon {
+                margin-bottom: 5px; 
+            }
+
+            
+        }
+
+        /* Responsive adjustments */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+            }
+
+                .nav-links.active {
+                    display: flex;
+                }
+        }
+
+
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">RCPunkt</a>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features">Funkcje</a></li>
+                    <li><a href="#how-it-works">Jak działa</a></li>
+                    <li><a href="#product-details">Szczegóły produktu</a></li>
+                    <li><a href="#pricing">Cennik</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Zrewolucjonizuj Kontrolę Czasu Pracy w Twojej Firmie</h1>
+                    <p>Nasz innowacyjny czytnik RCP - Rejestrator Czasu Pracy to zaawansowane rozwiązanie, które usprawni zarządzanie obecnością pracowników, zoptymalizuje procesy kadrowe i zwiększy produktywność Twojego zespołu.</p>
+                    <a href="#contact" class="btn">Dowiedz się więcej</a>
+                </div>
+                <div class="hero-image">
+                    <img src="RCPunkt.png" alt="Czytnik kart RCPunkt - nowoczesne urządzenie do rejestracji czasu pracy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Dlaczego warto wybrać nasze rozwiązanie?</h2>
+                <p>Poznaj kluczowe funkcje naszego czytnika kart, które pomogą Ci efektywnie zarządzać czasem pracy</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Błyskawiczna rejestracja</h3>
+                    <p>Szybki czas odczytu karty zapewnia płynną obsługę nawet w godzinach szczytu.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Nowoczesny design</h3>
+                    <p>Elegancki panel LCD z wielokolorowymi diodami LED w stylowej ramce wokół czytnika, podkreślający nowoczesny styl urządzenia.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Synchronizacja w czasie rzeczywistym</h3>
+                    <p>Natychmiastowa aktualizacja danych w systemie HR i naliczanie godzin pracy.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Zaawansowana analityka</h3>
+                    <p>Szczegółowe raporty i statystyki dotyczące czasu pracy, spóźnień i nieobecności.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Aplikacja mobilna</h3>
+                    <p>Rejestracja zdarzeń z dowolnego miejsca za pomocą intuicyjnej aplikacji na urządzenia mobilne.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3>Łatwa integracja</h3>
+                    <p>Bezproblemowa integracja z popularnymi systemami HR, ERP i zarządzania personelem.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>Jak działa nasz system?</h2>
+                <p>Poznaj prosty proces implementacji i korzystania z naszego czytnika RCP</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Instalacja i konfiguracja</h3>
+                        <p>Nasz zespół techniczny zainstaluje i skonfiguruje urządzenia w wybranych lokalizacjach, dostosowując system do indywidualnych potrzeb Twojej firmy.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Przydzielanie kart pracownikom</h3>
+                        <p>Każdy pracownik otrzymuje unikalną kartę RFID, która jest przypisana do jego profilu w systemie. Karty mogą być również zintegrowane z identyfikatorami firmowymi.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Codzienna rejestracja</h3>
+                        <p>Pracownicy rejestrują swoje przyjścia i wyjścia, przykładając kartę do czytnika. System automatycznie zapisuje dokładny czas i potwierdza odczyt sygnałem dźwiękowym i wizualnym za pomocą elegackiej, wielokolorowej ramki LED.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Analiza i raportowanie</h3>
+                        <p>Zespół HR i Zarząd mają dostęp do panelu, gdzie mogą generować raporty, analizować dane i monitorować czas pracy całego zespołu lub poszczególnych pracowników.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Wybierz plan idealny dla Twojej firmy</h2>
+                <p>Oferujemy elastyczne pakiety dostosowane do potrzeb firm różnej wielkości</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">199 zł <span>/miesiąc</span></div>
+                    <ul class="pricing-features">
+                        <li>Do 25 pracowników</li>
+                        <li>Podstawowa analityka</li>
+                        <li>E-mail support</li>
+                        <li>Aktualizacje systemu</li>
+                    </ul>
+                    <a href="#contact" class="btn">Wybierz plan</a>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-tag">Najpopularniejszy</div>
+                    <h3>Business</h3>
+                    <div class="price">349 zł <span>/miesiąc</span></div>
+                    <ul class="pricing-features">
+                        <li>Do 100 pracowników</li>
+                        <li>Zaawansowana analityka</li>
+                        <li>Powiadomienia email o zdarzeniach czasu pracy</li>
+                        <li>Priorytetowy support</li>
+                        <li>Integracja z systemami HR</li>
+                    </ul>
+                    <a href="#contact" class="btn">Wybierz plan</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">Indywidualna wycena</div>
+                    <ul class="pricing-features">
+                        <li>Nieograniczona liczba pracowników</li>
+                        <li>Dedykowane funkcje na zamówienie</li>
+                        <li>Aplikacja mobilna</li>
+                        <li>Osobisty opiekun klienta</li>
+                        <li>Pełna integracja z systemami firmowymi</li>
+                        <li>Rozbudowane rozwiązania bezpieczeństwa</li>
+                    </ul>
+                    <a href="#contact" class="btn">Skontaktuj się</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Product Details Section (zamiast Pricing) -->
+    <section class="product-details" id="product-details">
+        <div class="container">
+            <div class="section-title">
+                <h2>Szczegóły produktu</h2>
+                <p>Zapoznaj się z pełną specyfikacją naszego zaawansowanego czytnika kart rejestracji czasu pracy</p>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-image">
+                    <img src="RCPunkt_screen.png" alt="Ekran czytnika RCPunkt z interfejsem użytkownika">
+                    <div class="spec-group">
+                        <h3><i class="fas fa-wrench"></i> Opcje montażu</h3>
+                        <ul class="spec-list">
+                            <li>
+                                <span class="spec-name">Naścienny</span>
+                                <span class="spec-value">Mocowanie do płaskich powierzchni</span>
+                            </li>
+                            <li>
+                                <span class="spec-name">Na szybie</span>
+                                <span class="spec-value">Specjalny uchwyt przyklejany do szklanych powierzchni</span>
+                            </li>
+                            <li>
+                                <span class="spec-name">Do blatu</span>
+                                <span class="spec-value">Pochylenie czytnika pod dogodnym kątem</span>
+                            </li>
+                            <li>
+                                <span class="spec-name">Standard VESA</span>
+                                <span class="spec-value">Kompatybilność z mocowaniami 75x75 mm</span>
+                            </li>
+                            <li>
+                               
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="product-specs">
+                    <div class="spec-group">
+                        <h3><i class="fas fa-microchip"></i> Specyfikacja techniczna</h3>
+                        <ul class="spec-list">
+                            <li>
+                                <span class="spec-name">Typ wyświetlacza</span>
+                                <span class="spec-value">Kolorowy LCD opcje: 7/10/12/13 cali</span>
+                            </li>
+                            <li>
+                                <span class="spec-name">Czas działania</span>
+                                <span class="spec-value">24h/7d</span>
+                            </li>
+                            <li>
+                                <span class="spec-name">Łączność</span>
+                                <span class="spec-value">LAN, WiFi, Bluetooth, NFC</span>
+                            </li>
+                            <li>
+                                <span class="spec-name">Zasilanie</span>
+                                <span class="spec-value">PoE+, 12V DC-IN</span>
+                            </li>
+                            <li>
+                                <span class="spec-name">Standardy kart</span>
+                                <span class="spec-value">
+                                    MIFARE, ISO/IEC 14443A/B, FeliCa, ISO/IEC 15693
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="spec-group">
+                        <h3><i class="fas fa-cogs"></i> Funkcje systemu</h3>
+                        <ul class="spec-list">
+                            <li>
+                                <span class="spec-name">Rejestracja zdarzeń</span>
+                                <span class="spec-value">Do 12 przycisków rodzajów zdarzeń</span>
+                            </li>
+                            <li>
+                                <span class="spec-name">Rodzaje identyfikacji</span>
+                                <span class="spec-value">Karty zbliżeniowe, tagi NFC</span>
+                            </li>
+                            <li>
+                                <span class="spec-name">Obsługa rejestru</span>
+                                <span class="spec-value">W zintegrowanym systemie w przeglądarce</span>
+                            </li>
+                            <li>
+                                <span class="spec-name">Praca offline</span>
+                                <span class="spec-value">Tak, z automatyczną synchronizacją</span>
+                            </li>
+                            <li>
+                                <span class="spec-name">Zasilanie awaryjne</span>
+                                <span class="spec-value">Do 8 godzin pracy na baterii</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-description">
+                <h3 style="margin-top: 50px;">Opis produktu</h3>
+                <p>
+                    Czytnik kart rejestracji czasu pracy RCPunkt, wraz ze zintegrowanym przeglądarkowym Systemem Obsługi, to nowoczesne rozwiązanie zaprojektowane z myślą o precyzyjnym i niezawodnym monitorowaniu czasu pracy pracowników. Nasze urządzenie łączy w sobie zaawansowaną technologię z intuicyjną obsługą, zapewniając niezrównaną wydajność w każdym środowisku pracy.
+                </p>
+                <p>
+                    System został zaprojektowany z myślą o różnorodnych potrzebach firm - od małych przedsiębiorstw po duże korporacje z wieloma oddziałami. Dzięki modułowej architekturze, można go łatwo dostosować do indywidualnych wymagań, a także rozbudować w miarę rozwoju firmy.
+                </p>
+
+                <div class="highlight-box">
+                    <h3>Kluczowe korzyści dla Twojej firmy</h3>
+                    <ul>
+                        <li>Pełna kontrola nad czasem pracy Twoich pracowników</li>
+                        <li>Eliminacja błędów w rejestracji czasu pracy</li>
+                        <li>Redukcja kosztów administracyjnych działu HR nawet o 30%</li>
+                        <li>Możliwość zautomatyzowania naliczania nadgodzin, urlopów i absencji</li>
+                        <li>Możliwość integracji z systemami w Twojej firmie</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Skontaktuj się z nami</h2>
+                <p>Mamy nadzieję, że nasz produkt Cię zainteresuje. Skontaktuj się z nami!</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-wrapper">
+                    <div class="contact-card">
+                        <div class="contact-icon-large">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                        <h3>Napisz do nas</h3>
+                        <a id="link-conversion" rel="nofollow, noindex" href="to-ict/" class="contact-link email-link"></a>
+                        <p class="contact-description">Odpowiadamy na wszystkie zapytania w ciągu 24 godzin</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon-large">
+                            <i class="fas fa-phone-volume"></i>
+                        </div>
+                        <h3>Zadzwoń do nas</h3>
+                        <a href="tel:+48601884035" class="contact-link">+48 601 88 40 35</a>
+                        <p class="contact-description">Jesteśmy dostępni od poniedziałku do piątku w godzinach 8:00 - 18:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="floating-contact-bar">
+        <div class="floating-contact-bar-icon">
+            <i class="fas fa-headset"></i>
+        </div>
+        <div class="floating-contact-info">
+            <span class="contact-type">Napisz do nas</span>
+            <a id="link-conversion2" rel="nofollow, noindex" href="to-ict/" class="email-link"></a>
+            <span class="contact-type">Zadzwoń do nas</span>
+            <a href="tel:+48601884035">+48 601 88 40 35</a>
+
+
+        </div>
+    </div>
+</body>
+</html>
